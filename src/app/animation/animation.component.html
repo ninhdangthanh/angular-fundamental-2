@@ -1,0 +1,13 @@
+<h1>CHILD 1</h1>
+
+<!-- src/app/app.component.html -->
+<div>
+  <button (click)="toggleDiv()">Toggle Div</button>
+</div>
+
+<div [@slideIn]="isToggle ? 'in' : 'out'">
+  This div will slide in and out.
+</div>
+
+<br><br><br>
+<div [@slideIn1]="isToggle ? 'in' : 'out'">Div 2</div>

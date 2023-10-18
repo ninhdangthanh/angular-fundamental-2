@@ -1,0 +1,14 @@
+<ul>
+  <li style="color: green;" *ngFor="let product of products">{{ product.name }}</li>
+</ul>
+
+<div *ngIf="productsState$ | async as data">
+  <h1 *ngIf="data.loading ">
+    <!-- Hiển thị thông báo hoặc biểu tượng tải dữ liệu -->
+    Loading...
+  </h1>
+  <h2 style="color: red;" *ngIf="data.error">Error: {{ data.error | json }}</h2>
+  <ul>
+    <li style="color: blue;" *ngFor="let product of data.products">{{ product.id + "---" + product.name }}</li>
+  </ul>
+</div>

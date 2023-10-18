@@ -1,0 +1,26 @@
+<div>
+  <h1>Todo List</h1>
+  <input type="text" [(ngModel)]="newTodoText" (keyup.enter)="addTodoItem(newTodoText)" placeholder="Add a new todo">
+  <ul>
+    <li *ngFor="let todo of todos">
+      <span [ngClass]="{complete: todo.completed, notComplete: !todo.completed}">{{ todo.text }}</span>
+      <button (click)="toggleTodoItem(todo.id)">Toggle</button>
+      <button (click)="deleteTodoItem(todo.id)">Delete</button>
+    </li>
+  </ul>
+</div>
+
+<style>
+  li {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .complete {
+    color: blue;
+  }
+
+  .notComplete {
+    color: red;
+  }
+</style>

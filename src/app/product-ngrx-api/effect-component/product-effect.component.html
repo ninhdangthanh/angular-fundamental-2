@@ -1,0 +1,9 @@
+<div *ngIf="productsState$ | async as data">
+  <h1 *ngIf="data.loading ">
+    Loading...
+  </h1>
+  <h2 style="color: blueviolet;" *ngIf="data.error">Error: {{ data.error }}</h2>
+  <ul>
+    <li style="color: orange;" *ngFor="let product of data.products">{{ product.id + "---" + product.name }}</li>
+  </ul>
+</div>
