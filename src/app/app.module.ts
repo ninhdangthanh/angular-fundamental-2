@@ -12,7 +12,6 @@ import { AnimationComponent } from './animation/animation.component';
 import { todoReducer } from './todo-list-not-api/store/todo.reducer';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { appReducer } from './todo-list-not-api/store/store';
 import { TodoListComponent } from './todo-list-not-api/todo-list.component';
 import { FormsModule } from '@angular/forms';
 import { productReducer } from './product-ngrx-api/store/product.reducers';
@@ -20,6 +19,15 @@ import { ProductListComponent } from './product-ngrx-api/product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductEffectComponent } from './product-ngrx-api/effect-component/product-effect.component';
 import { DataEffects } from './product-ngrx-api/effect-component/product.effect';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NzDemoModalAsyncComponent } from './modal-popup/modal-popup.component';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -32,7 +40,8 @@ import { DataEffects } from './product-ngrx-api/effect-component/product.effect'
     AnimationComponent,
     TodoListComponent,
     ProductListComponent,
-    ProductEffectComponent
+    ProductEffectComponent,
+    NzDemoModalAsyncComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +49,13 @@ import { DataEffects } from './product-ngrx-api/effect-component/product.effect'
     FormsModule,
     HttpClientModule,
     StoreModule.forRoot({todos: todoReducer, products: productReducer}),
-    EffectsModule.forRoot([DataEffects])
+    EffectsModule.forRoot([DataEffects]),
+    BrowserAnimationsModule,
+    NzModalModule
   ],
-  providers: [],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
